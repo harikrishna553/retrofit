@@ -1,6 +1,7 @@
 package com.sample.app.controller;
 
 import java.util.Collection;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,7 @@ public class EmployeeController {
 	@ApiOperation(value = "Get all the employees", notes = "This API will get details of all the employees")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Collection<Employee>> all() {
+		sleep(2);
 		return ResponseEntity.ok(EmployeeUtil.all());
 	}
 
@@ -89,6 +91,15 @@ public class EmployeeController {
 		}
 
 		return ResponseEntity.ok(EmployeeUtil.updateById(id, emp));
+	}
+	
+	private static void sleep(int noOfSeconds) {
+		try {
+			TimeUnit.SECONDS.sleep(noOfSeconds);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

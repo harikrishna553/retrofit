@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.sample.app.dto.Employee;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -33,4 +34,7 @@ public interface EmployeeCRUD {
 	
 	@DELETE("employees/{id}")
 	Call<Employee> deleteEmployee(@Header("Authorization") String token, @Path("id") Integer empId);
+	
+	@GET("employees")
+	Call<ResponseBody> allEmployeesRawResponse();
 }
